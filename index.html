@@ -42,6 +42,48 @@ svg.i{width:20px;height:20px;flex:none}
 .rows{display:grid;gap:16px;align-content:start}
 .row{display:flex;gap:12px;align-items:flex-start}
 .row a{font-weight:700}
+.logo-img{height:46px;width:auto;display:block;max-width:180px;object-fit:contain}
+.logo-img.on-dark{background:#fff;padding:5px 9px;border-radius:6px}
+.lt aside .logo-img{height:auto;width:150px;max-width:100%}
+@media(max-width:1000px){.lt aside .logo-img{height:40px;width:auto}}
+img.photo{display:block;width:100%;object-fit:cover}
+.gal h2{font-size:clamp(2rem,4.2vw,2.9rem);margin-bottom:28px}
+.gal-grid img{display:block;width:100%;object-fit:cover}
+/* editorial: full-bleed band photo, square tiles */
+.ed-band:has(.photo){padding:0;background:none}
+.ed-band .photo{height:min(68vh,640px)}
+.ed .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ed .gal-grid img{aspect-ratio:1/1}
+/* tarjetas: photo fills the rounded card, rounded tiles */
+.tj-artcard:has(.photo){padding:0;overflow:hidden}
+.tj-artcard .photo{height:100%;aspect-ratio:1/1}
+.tj .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px}
+.tj .gal-grid img{aspect-ratio:4/3;border-radius:calc(var(--r) + 4px);border:1px solid var(--line)}
+/* lateral: tall portrait photo, two-column tiles */
+.lt-hero .photo{aspect-ratio:4/5;border-radius:var(--r)}
+.lt .gal{padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px)}
+.lt .gal .wrap{padding:0;margin:0;max-width:900px}
+.lt .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lt .gal-grid img{aspect-ratio:3/2;border-radius:var(--r)}
+/* bloques: photo inside the circle, scrolling strip */
+.bq-circle:has(.photo){padding:0;overflow:hidden}
+.bq-circle .photo{height:100%;aspect-ratio:1/1}
+.bq .gal{background:var(--ink);color:var(--bg)}
+.bq .gal-grid{display:grid;grid-auto-flow:column;grid-auto-columns:min(420px,80%);gap:0;overflow-x:auto;scroll-snap-type:x mandatory}
+.bq .gal-grid img{height:340px;scroll-snap-align:start}
+/* minimal: wide photo above the title, quiet two-up grid */
+.mn-hero .photo{aspect-ratio:16/9;border-radius:var(--r);margin-bottom:40px}
+.mn .gal{padding:64px 0;border-top:1px solid var(--line)}
+.mn .gal .wrap{padding:0}
+.mn .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mn .gal-grid img{aspect-ratio:4/3;border-radius:var(--r)}
+/* revista: framed photo, feature tile plus smaller ones */
+.rv-frame:has(.photo){padding:10px}
+.rv-frame .photo{aspect-ratio:4/5}
+.rv .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:14px}
+.rv .gal-grid img{height:100%;border:2px solid var(--ink)}
+.rv .gal-grid img:first-child{grid-column:span 2;grid-row:span 2}
+@media(max-width:700px){.ed .gal-grid,.rv .gal-grid{grid-template-columns:1fr 1fr}.rv .gal-grid{grid-auto-rows:160px}.lt .gal-grid,.mn .gal-grid{grid-template-columns:1fr}}
 .float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 10px 24px -8px rgba(0,0,0,.45)}
 .float svg{width:28px;height:28px}
 .ft{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
@@ -111,7 +153,7 @@ svg.i{width:20px;height:20px;flex:none}
 <aside>
   <a class="logo" href="#"><svg class="mark" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="var(--accent)"/><path d="M7 17 17 9l10 8M10 15v10h14V15" fill="none" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linejoin="round"/><rect x="15" y="19" width="4" height="6" fill="var(--accent-ink)"/></svg><span>JMA Construcciones</span></a>
   <p class="desc">Te acompañamos desde la idea hasta la entrega de llaves.</p>
-  <nav aria-label="Principal"><ul><li><a href="#servicios">Servicios</a></li><li><a href="#lugar">El lugar</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
+  <nav aria-label="Principal"><ul><li><a href="#servicios">Servicios</a></li><li><a href="#fotos">Fotos</a></li><li><a href="#lugar">El lugar</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
   <a class="btn btn-main" href="https://wa.me/59898368660?text=Hola%20JMA%20Construcciones%2C%20quisiera%20pedir%20un%20presupuesto%20para%20una%20obra." target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><span>Presupuesto</span></a>
   <div class="mini"><div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div>Amatista 3402, Maldonado<br><a href="https://www.google.com/maps/place/JMA+Construcciones+-+Empresa+de+construcci%C3%B3n+de+la+ciudad+de+Maldonado/data=!4m2!3m1!1s0x957511afd4fe3cff:0x714ad1d5ce82cc7e" target="_blank" rel="noopener">Abrir en Google Maps</a></div></div>
 <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div><a href="tel:+59898368660">098 368 660</a> o <a href="https://wa.me/59898368660?text=Hola%20JMA%20Construcciones%2C%20quisiera%20pedir%20un%20presupuesto%20para%20una%20obra." target="_blank" rel="noopener">WhatsApp</a></div></div></div>
@@ -119,11 +161,15 @@ svg.i{width:20px;height:20px;flex:none}
 <main>
 <section class="lt-hero">
   <div><p class="kicker">Maldonado</p><h1>Construimos tu casa con responsabilidad y prolijidad</h1><p class="lead">Empresa de construcción de la ciudad de Maldonado. Obras, reformas y terminaciones, con un equipo que cumple lo que promete.</p><div class="cta"><a class="btn btn-main" href="https://wa.me/59898368660?text=Hola%20JMA%20Construcciones%2C%20quisiera%20pedir%20un%20presupuesto%20para%20una%20obra." target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><span>Pedir presupuesto</span></a><a class="btn btn-ghost" href="#contacto"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Cómo llegar</a></div><p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> <span><b>4,9</b> en Google · 15 reseñas</span></p></div>
-  <div class="art" aria-hidden="true"><svg viewBox="0 0 240 200"><rect x="6" y="6" width="228" height="188" rx="14" fill="var(--soft)"/><path d="M170 30v150M150 30h70M170 30l-20 20M170 44h46" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><path d="M206 44v26" stroke="var(--ink)" stroke-width="3"/><rect x="198" y="70" width="16" height="12" fill="var(--accent)"/><path d="M40 180V108l50-38 50 38v72" fill="var(--surface)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/><path d="M40 108h100M64 108v72M90 70v110M116 108v72M40 144h100" stroke="var(--ink)" stroke-width="3" opacity=".55"/><path d="M28 112 90 64l62 48" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="178" width="200" height="6" rx="3" fill="var(--ink)"/></svg></div>
+  <img class="photo" src="fotos/01.jpg" alt="JMA Construcciones">
 </section>
 <section id="servicios"><div class="in">
   <h2>Qué hacemos</h2><p class="sub">Te acompañamos desde la idea hasta la entrega de llaves.</p>
   <ul class="lt-svc"><li><h3>Obra nueva</h3><p>Construcción de viviendas desde los cimientos, con seguimiento en cada etapa.</p></li><li><h3>Reformas y ampliaciones</h3><p>Sumamos metros, renovamos ambientes y actualizamos tu casa.</p></li><li><h3>Albañilería y terminaciones</h3><p>Revoques, pisos, revestimientos y detalles que se notan.</p></li><li><h3>Presupuesto claro</h3><p>Visitamos la obra y te pasamos un presupuesto detallado antes de empezar.</p></li></ul>
+</div></section>
+<section id="fotos" class="gal"><div class="wrap">
+  <h2>Fotos</h2>
+  <div class="gal-grid"><img src="fotos/02.jpg" alt="JMA Construcciones, foto 2" loading="lazy"><img src="fotos/03.jpg" alt="JMA Construcciones, foto 3" loading="lazy"><img src="fotos/04.jpg" alt="JMA Construcciones, foto 4" loading="lazy"><img src="fotos/05.jpg" alt="JMA Construcciones, foto 5" loading="lazy"><img src="fotos/06.jpg" alt="JMA Construcciones, foto 6" loading="lazy"></div>
 </div></section>
 <section id="lugar" class="lt-place"><div class="in">
   <h2>Lo que dicen nuestros clientes: responsabilidad</h2><p>Es la palabra que más se repite en las reseñas. Cumplir plazos, trabajar prolijo y dejar la obra limpia es parte del trabajo.</p>
